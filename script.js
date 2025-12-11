@@ -1,17 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector("h1").innerHTML = "Click the Lightbulb!";
+let cost = 0;
+let timer = null;
 
-  function toggleLight() {
-    let lightbulb = document.querySelector('img');
-    if (lightbulb.src.endsWith('4d26vbz5')) {
-      lightbulb.src = 'https://tinyurl.com/4225uhzk';
-    } else {
-      lightbulb.src = 'https://tinyurl.com/4d26vbz5';
+function toggle() {
+  let image = document.querySelector("img");
+  if (image.src.includes("off")) {
+    image.src = "https://tinyurl.com/tru-on";
+    document.body.classList.add("dark-mode");
+    if (timer === null) {
+      timer = setInterval(function () {
+        cost = cost + 0.5;
+        document.querySelector("#bill").innerHTML = "Current Bill: $" + cost;
+      }, 1000);
     }
+  } else {
+    image.src = "https://tinyurl.com/tru-off";
+    document.body.classList.remove("dark-mode");
+    clearInterval(timer);
+    timer = null;
   }
-
-  let imageElement = document.querySelector('img');
-  if (imageElement) {
-    imageElement.addEventListener('click', toggleLight);
-  }
-});
+}
+document.querySelector("img").addEventListener("click", toggle);
