@@ -1,6 +1,12 @@
-body {
-  text-align: center;
-}
 h1 {
-  color: red;
+  color:red;
+  background-color: yellow;
+}
+body {
+  text-align:center;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
 }
